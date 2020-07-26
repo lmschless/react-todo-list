@@ -1,43 +1,41 @@
 import React, { Component } from 'react';
-import Box from './Box';
-import NewBoxForm from './NewBoxForm';
+import Todo from './Todo';
+import NewBoxForm from './NewTodoForm';
 
 export default class TodosList extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			todos: [ 'Take out the trash' ]
+			todos: [ { name: 'Take out the trash' } ]
 		};
 	}
 
 	remove = (id) => {
-		// create a new array that does NOT contain the box object with an id
+		// create a new array that does NOT contain the todo object with an id
 		// that matches the id passed in (corresponds to the specific X button clicked)
 		this.setState({
-			boxes: this.state.boxes.filter((box) => box.id !== id)
+			todos: this.state.todos.filter((todo) => todo.id !== id)
 		});
 	};
 
-	create = (newBox) => {
+	create = (newTodo) => {
 		this.setState({
-			boxes: [ ...this.state.boxes, newBox ]
+			todos: [ ...this.state.todos, newTodo ]
 		});
 	};
 
 	render() {
 		return (
 			<div>
-				<h1>Color Box Maker</h1>
-				<NewBoxForm createBox={this.create} />
-				{this.state.boxes.map((box) => (
-					<Box
-						key={box.id}
-						id={box.id}
-						width={box.width}
-						height={box.height}
-						color={box.color}
-						remove={() => this.remove(box.id)}
+				<h1>React Todos List</h1>
+				<NewBoxForm createTodo={this.create} />
+				{this.state.todos.map((todo) => (
+					<Todo
+						name={todo.name}
+						key={todo.id}
+						id={todo.id}
+						remove={() => this.remove(todo.id)}
 					/>
 				))}
 			</div>
