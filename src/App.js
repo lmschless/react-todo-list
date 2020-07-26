@@ -1,12 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
-import BoxList from './BoxList';
+import TodosList from './TodosList';
 import './App.css';
 
 function App() {
 	return (
 		<div className="App">
-			<BoxList />
+			<TodosList />
 		</div>
 	);
 }

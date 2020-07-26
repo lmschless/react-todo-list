@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import Box from './Box';
 import NewBoxForm from './NewBoxForm';
 
-export default class BoxList extends Component {
+export default class TodosList extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			boxes: []
+			todos: [ 'Take out the trash' ]
 		};
 	}
 
