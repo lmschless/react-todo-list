@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Todo from './Todo';
-import NewBoxForm from './NewTodoForm';
+import NewTodoForm from './NewTodoForm';
 import { v4 } from 'uuid';
-
+import './TodoList.css';
 export default class TodosList extends Component {
 	constructor(props) {
 		super(props);
@@ -25,6 +25,16 @@ export default class TodosList extends Component {
 		});
 	};
 
+	toggleCompletion = (id) => {
+		const updatedTodos = this.state.todos.map((todo) => {
+			if (todo.id === id) {
+				return { ...todo, completed: !todo.completed };
+			}
+			return todo;
+		});
+		this.setState({ todos: updatedTodos });
+	};
+
 	update = (id, updatedName) => {
 		const updatedTodos = this.state.todos.map((todo) => {
 			if (todo.id === id) {
@@ -43,10 +53,10 @@ export default class TodosList extends Component {
 
 	render() {
 		return (
-			<div>
-				<h1>React Todos List</h1>
-				<br />
-				<NewBoxForm createTodo={this.create} />
+			<div className="TodoList">
+				<h1>
+					Todo List!<span>A Simple React Todo List App</span>
+				</h1>
 				<ul>
 					{this.state.todos.map((todo) => (
 						<Todo
@@ -57,9 +67,12 @@ export default class TodosList extends Component {
 							edit={() => this.edit(todo.id)}
 							update={this.update}
 							completed={todo.completed}
+							toggleTodo={this.toggleCompletion}
 						/>
 					))}
 				</ul>
+				<br />
+				<NewTodoForm createTodo={this.create} />
 			</div>
 		);
 	}

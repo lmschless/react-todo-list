@@ -49,7 +49,12 @@ export default class Todo extends Component {
 		} else {
 			result = (
 				<div>
-					<li className={this.props.completed ? 'completed' : ''}>
+					<li
+						className={this.props.completed ? 'completed' : ''}
+						onClick={() => {
+							this.props.toggleTodo(this.props.id);
+						}}
+					>
 						{this.props.name} <button onClick={this.toggleForm}>
 							Edit
 						</button>{' '}
