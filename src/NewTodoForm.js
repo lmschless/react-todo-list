@@ -12,7 +12,6 @@ export default class NewTodoForm extends Component {
 	}
 
 	handleChange = (evt) => {
-		console.log(evt);
 		this.setState({
 			[evt.target.name]: evt.target.value
 		});
@@ -34,9 +33,9 @@ export default class NewTodoForm extends Component {
 		return (
 			<form onSubmit={this.handleSubmit}>
 				<div>
-					<label htmlFor="name">Fill out Todo: </label>
 					<input
 						type="text"
+						placeholder="New Todo"
 						name="name"
 						value={this.state.name}
 						id="name"

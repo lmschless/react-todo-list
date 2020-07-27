@@ -8,7 +8,10 @@ export default class TodosList extends Component {
 		super(props);
 
 		this.state = {
-			todos: [ { name: 'Take out the trash', id: v4() } ]
+			todos: [
+				{ name: 'Take out the trash', id: v4() },
+				{ name: 'Walk Gizmo', id: v4() }
+			]
 		};
 	}
 
@@ -19,6 +22,8 @@ export default class TodosList extends Component {
 			todos: this.state.todos.filter((todo) => todo.id !== id)
 		});
 	};
+
+	edit = (evt) => {};
 
 	create = (newTodo) => {
 		this.setState({
@@ -32,14 +37,17 @@ export default class TodosList extends Component {
 				<h1>React Todos List</h1>
 				<br />
 				<NewBoxForm createTodo={this.create} />
-				{this.state.todos.map((todo) => (
-					<Todo
-						name={todo.name}
-						key={todo.id}
-						id={todo.id}
-						remove={() => this.remove(todo.id)}
-					/>
-				))}
+				<ul>
+					{this.state.todos.map((todo) => (
+						<Todo
+							name={todo.name}
+							key={todo.id}
+							id={todo.id}
+							remove={() => this.remove(todo.id)}
+							edit={() => this.edit(todo.id)}
+						/>
+					))}
+				</ul>
 			</div>
 		);
 	}
