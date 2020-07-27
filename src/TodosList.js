@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import Todo from './Todo';
 import NewBoxForm from './NewTodoForm';
+import { v4 } from 'uuid';
 
 export default class TodosList extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			todos: [ { name: 'Take out the trash' } ]
+			todos: [ { name: 'Take out the trash', id: v4() } ]
 		};
 	}
 
@@ -29,6 +30,7 @@ export default class TodosList extends Component {
 		return (
 			<div>
 				<h1>React Todos List</h1>
+				<br />
 				<NewBoxForm createTodo={this.create} />
 				{this.state.todos.map((todo) => (
 					<Todo

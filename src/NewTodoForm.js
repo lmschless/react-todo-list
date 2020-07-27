@@ -6,11 +6,13 @@ export default class NewTodoForm extends Component {
 		super(props);
 
 		this.state = {
-			name: ''
+			name: '',
+			showForm: false
 		};
 	}
 
 	handleChange = (evt) => {
+		console.log(evt);
 		this.setState({
 			[evt.target.name]: evt.target.value
 		});
@@ -25,7 +27,7 @@ export default class NewTodoForm extends Component {
 			id: v4()
 		};
 		this.props.createTodo(newTodo);
-		this.setState({ height: '', width: '', color: '' });
+		this.setState({ name: '' });
 	};
 
 	render() {
