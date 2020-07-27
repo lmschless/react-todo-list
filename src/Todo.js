@@ -6,7 +6,7 @@ export default class Todo extends Component {
 
 		this.state = {
 			isEditing: false,
-			task: ''
+			task: this.props.name
 		};
 	}
 
@@ -17,32 +17,46 @@ export default class Todo extends Component {
 	handleUpdate = (evt) => {
 		evt.preventDefault();
 		// take a new todo and pass up to parent
+		this.props.update(this.props.id, this.state.task);
+		this.setState({
+			isEditing: false
+		});
+	};
+
+	handleChange = (evt) => {
+		this.setState({
+			task: evt.target.value
+		});
 	};
 
 	render() {
 		let result;
-		{
-			if (this.state.isEditing) {
-				result = (
-					<div>
-						<form onSubmit={this.handleUpdate}>
-							<input type="text" value={this.state.task} />
-							<button>Save</button>
-						</form>
-					</div>
-				);
-			} else {
-				result = (
-					<div>
-						<li>
-							{this.props.name} <button onClick={this.toggleForm}>
-								Edit
-							</button>{' '}
-							<button onClick={this.props.remove}>X</button>
-						</li>{' '}
-					</div>
-				);
-			}
+
+		if (this.state.isEditing) {
+			result = (
+				<div>
+					<form onSubmit={this.handleUpdate}>
+						<input
+							type="text"
+							value={this.state.task}
+							name="task"
+							onChange={this.handleChange}
+						/>
+						<button>Save</button>
+					</form>
+				</div>
+			);
+		} else {
+			result = (
+				<div>
+					<li>
+						{this.props.name} <button onClick={this.toggleForm}>
+							Edit
+						</button>{' '}
+						<button onClick={this.props.remove}>X</button>
+					</li>{' '}
+				</div>
+			);
 		}
 		return result;
 		// <div>

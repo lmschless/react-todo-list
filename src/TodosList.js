@@ -23,7 +23,15 @@ export default class TodosList extends Component {
 		});
 	};
 
-	edit = (evt) => {};
+	update = (id, updatedName) => {
+		const updatedTodos = this.state.todos.map((todo) => {
+			if (todo.id === id) {
+				return { ...todo, name: updatedName };
+			}
+			return todo;
+		});
+		this.setState({ todos: updatedTodos });
+	};
 
 	create = (newTodo) => {
 		this.setState({
@@ -45,6 +53,7 @@ export default class TodosList extends Component {
 							id={todo.id}
 							remove={() => this.remove(todo.id)}
 							edit={() => this.edit(todo.id)}
+							update={this.update}
 						/>
 					))}
 				</ul>
