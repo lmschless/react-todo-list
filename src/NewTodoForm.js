@@ -23,7 +23,8 @@ export default class NewTodoForm extends Component {
 		// ID will be used for selecting which object to remove from state/window.
 		const newTodo = {
 			...this.state,
-			id: v4()
+			id: v4(),
+			completed: false
 		};
 		this.props.createTodo(newTodo);
 		this.setState({ name: '' });

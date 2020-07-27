@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './Todo.css';
 export default class Todo extends Component {
 	constructor(props) {
 		super(props);
@@ -49,7 +49,7 @@ export default class Todo extends Component {
 		} else {
 			result = (
 				<div>
-					<li>
+					<li className={this.props.completed ? 'completed' : ''}>
 						{this.props.name} <button onClick={this.toggleForm}>
 							Edit
 						</button>{' '}
