@@ -10,9 +10,9 @@ export default class TodosList extends Component {
 		this.state = {
 			todos: [
 				{ name: 'Take out the trash', id: v4(), completed: false },
-				{ name: 'Walk Gizmo', id: v4(), completed: false },
-				{ name: 'Goto the gym', id: v4(), completed: false },
-				{ name: 'Wash Car', id: v4(), completed: false }
+				{ name: 'Walk the dog', id: v4(), completed: false },
+				{ name: 'Go to the gym', id: v4(), completed: false },
+				{ name: 'Wash the Car', id: v4(), completed: false }
 			]
 		};
 	}
