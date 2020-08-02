@@ -1,14 +1,8 @@
-import React from 'react';
-import logo from './logo.svg';
-import TodosList from './TodosList';
-import './App.css';
+import React, { Component } from 'react';
+import TodoApp from './TodoApp';
 
 function App() {
-	return (
-		<div className="App">
-			<TodosList />
-		</div>
-	);
+	return <TodoApp />;
 }
 
 export default App;
