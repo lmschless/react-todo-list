@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
+import TodoList from './TodoList';
+import TodoForm from './TodoForm';
 
 // app component layout
 // -TodoApp
 //   -TodoForm
 //   -TodoList
 //     -TodoItem
+// each todo will have an id, task, completed(t/f)
 
 export default function TodoApp() {
+	const initialTodos = [
+		{ id: 1, task: 'Clean Fishtank', completed: false },
+		{ id: 2, task: 'Wash Car', completed: true },
+		{ id: 3, task: 'Grow Beard', completed: false }
+	];
+	const [ todos, setTodos ] = useState(initialTodos);
+
 	return (
 		<Paper
 			style={{
@@ -27,6 +37,8 @@ export default function TodoApp() {
 					<Typography color="inherit">TODOS WITH HOOKS</Typography>
 				</Toolbar>
 			</AppBar>
+			<TodoForm />
+			<TodoList todos={todos} />
 		</Paper>
 	);
 }
