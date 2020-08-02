@@ -10,7 +10,7 @@ export default function TodoList(props) {
 		<Paper>
 			<List>
 				{props.todos.map((todo) => (
-					<React.Fragment>
+					<React.Fragment key={todo.id}>
 						<ListItem>
 							<ListItemText>{todo.task}</ListItemText>
 						</ListItem>

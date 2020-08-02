@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
+import { v4 } from 'uuid';
 
 // app component layout
 // -TodoApp
@@ -16,15 +17,15 @@ import TodoForm from './TodoForm';
 
 export default function TodoApp() {
 	const initialTodos = [
-		{ id: 1, task: 'Clean Fishtank', completed: false },
-		{ id: 2, task: 'Wash Car', completed: true },
-		{ id: 3, task: 'Grow Beard', completed: false }
+		{ id: v4(), task: 'Clean Fishtank', completed: false },
+		{ id: v4(), task: 'Wash Car', completed: true },
+		{ id: v4(), task: 'Grow Beard', completed: false }
 	];
 	const [ todos, setTodos ] = useState(initialTodos);
 
 	const addTodo = (newTodoText) => {
 		// copies the original todos state and concatenates a new todo object to it
-		setTodos(...todos, { id: 4, task: newTodoText, completed: false });
+		setTodos([ ...todos, { id: v4(), task: newTodoText, completed: false } ]);
 	};
 	return (
 		<Paper

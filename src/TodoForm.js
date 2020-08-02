@@ -9,19 +9,16 @@ export default function TodoForm({ addTodo }) {
 	// initialize custom hook here
 	const [ value, handleChange, reset ] = useInputState('');
 	return (
-		<div>
-			<Paper>
-				<form
-					onSubmit={(e) => {
-						e.preventDefault(); // prevents a refresh
-						addTodo(value); // takes value of input and passes it up to addTodo
-						reset(); // call useInputState reset function to clear input
-					}}
-				>
-					<TextField value={value} type="text" onChange={handleChange} />
-				</form>
-				<button onClick={reset}>Submit</button>
-			</Paper>
-		</div>
+		<Paper>
+			<form
+				onSubmit={(e) => {
+					e.preventDefault(); // prevents a refresh
+					addTodo(value); // takes value of input and passes it up to addTodo
+					reset(); // call useInputState reset function to clear input
+				}}
+			>
+				<TextField value={value} type="text" onChange={handleChange} />
+			</form>
+		</Paper>
 	);
 }
