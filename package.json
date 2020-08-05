@@ -12,8 +12,10 @@
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
 		"react-scripts": "3.4.1",
+		"styled-components": "^5.1.1",
 		"uuid": "^8.2.0"
 	},
+	"plugins": [ "babel-plugin-styled-components" ],
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
@@ -26,11 +28,7 @@
 		"extends": "react-app"
 	},
 	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
+		"production": [ ">0.2%", "not dead", "not op_mini all" ],
 		"development": [
 			"last 1 chrome version",
 			"last 1 firefox version",
@@ -38,6 +36,7 @@
 		]
 	},
 	"devDependencies": {
+		"babel-plugin-styled-components": "^1.11.1",
 		"gh-pages": "^3.1.0"
 	}
 }

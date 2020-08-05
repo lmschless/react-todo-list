@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
 import { v4 } from 'uuid';
+import styled from 'styled-components';
 
 // app component layout
 // -TodoApp
@@ -27,14 +28,23 @@ export default function TodoApp() {
 		// copies the original todos state and concatenates a new todo object to it
 		setTodos([ ...todos, { id: v4(), task: newTodoText, completed: false } ]);
 	};
+
+	const StyledPaper = styled(Paper)`
+					padding: 0;
+					margin: 0;
+					height: 100vh;
+					backgroundColor: '#fafafa';
+	
+	`;
+
 	return (
-		<Paper
-			style={{
-				padding: 0,
-				margin: 0,
-				height: '100vh',
-				backgroundColor: '#fafafa'
-			}}
+		<StyledPaper
+			// style={{
+			// 	padding: 0,
+			// 	margin: 0,
+			// 	height: '100vh',
+			// 	backgroundColor: '#fafafa'
+			// }}
 			elevation={0}
 		>
 			<AppBar color="primary" position="static" style={{ height: '64px' }}>
@@ -42,8 +52,12 @@ export default function TodoApp() {
 					<Typography color="inherit">TODOS WITH HOOKS</Typography>
 				</Toolbar>
 			</AppBar>
-			<TodoForm addTodo={addTodo} />
-			<TodoList todos={todos} />
-		</Paper>
+			<Grid container justify="center">
+				<Grid item xs={11} md={8} lg={4}>
+					<TodoForm addTodo={addTodo} />
+					<TodoList todos={todos} />
+				</Grid>
+			</Grid>
+		</StyledPaper>
 	);
 }
