@@ -2,14 +2,20 @@ import React from 'react';
 import useInputState from './Hooks/useInputState';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
+import styled from 'styled-components';
 
 export default function TodoForm({ addTodo }) {
 	// only import addTodo instead of all props
 
 	// initialize custom hook here
 	const [ value, handleChange, reset ] = useInputState('');
+	const StyledPaper = styled(Paper)`
+				margin: 1rem 0;
+				padding: 0 1 rem;
+	`;
+
 	return (
-		<Paper>
+		<StyledPaper>
 			<form
 				onSubmit={(e) => {
 					e.preventDefault(); // prevents a refresh
@@ -19,6 +25,6 @@ export default function TodoForm({ addTodo }) {
 			>
 				<TextField value={value} type="text" onChange={handleChange} />
 			</form>
-		</Paper>
+		</StyledPaper>
 	);
 }
