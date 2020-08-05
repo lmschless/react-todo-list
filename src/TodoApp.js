@@ -15,6 +15,13 @@ import styled from 'styled-components';
 //   -TodoList
 //     -TodoItem
 // each todo will have an id, task, completed(t/f)
+const StyledPaper = styled(Paper)`
+					padding: 0;
+					margin: 0;
+					height: 100vh;
+					background-color: '#fafafa';
+	
+	`;
 
 export default function TodoApp() {
 	const initialTodos = [
@@ -29,24 +36,8 @@ export default function TodoApp() {
 		setTodos([ ...todos, { id: v4(), task: newTodoText, completed: false } ]);
 	};
 
-	const StyledPaper = styled(Paper)`
-					padding: 0;
-					margin: 0;
-					height: 100vh;
-					backgroundColor: '#fafafa';
-	
-	`;
-
 	return (
-		<StyledPaper
-			// style={{
-			// 	padding: 0,
-			// 	margin: 0,
-			// 	height: '100vh',
-			// 	backgroundColor: '#fafafa'
-			// }}
-			elevation={0}
-		>
+		<StyledPaper elevation={0}>
 			<AppBar color="primary" position="static" style={{ height: '64px' }}>
 				<Toolbar>
 					<Typography color="inherit">TODOS WITH HOOKS</Typography>
@@ -55,7 +46,7 @@ export default function TodoApp() {
 			<Grid container justify="center" style={{ marginTop: '1rem' }}>
 				<Grid item xs={11} md={8} lg={4}>
 					<TodoForm addTodo={addTodo} />
-					<TodoList todos={todos} />
+					<TodoList todos={todos} completed={todos.completed} />
 				</Grid>
 			</Grid>
 		</StyledPaper>

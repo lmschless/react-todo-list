@@ -4,16 +4,15 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-
+import Todo from './Todo';
 export default function TodoList(props) {
 	return (
 		<Paper>
 			<List>
 				{props.todos.map((todo) => (
 					<React.Fragment key={todo.id}>
-						<ListItem>
-							<ListItemText>{todo.task}</ListItemText>
-						</ListItem>
+						<Todo task={todo.task} key={todo.id} completed={todo.completed} />
+
 						<Divider />
 					</React.Fragment>
 				))}
