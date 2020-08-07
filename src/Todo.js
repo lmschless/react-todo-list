@@ -12,7 +12,7 @@ const StyledListItemText = styled(ListItemText)`
 		text-decoration: ${(props) => (props.completed ? 'line-through' : 'none')};
 		`;
 
-export default function Todo({ task, completed }) {
+export default function Todo({ task, completed, removeTodo, id }) {
 	return (
 		<ListItem>
 			<Checkbox tabIndex={-1} checked={completed} />
@@ -24,7 +24,12 @@ export default function Todo({ task, completed }) {
 				<IconButton aria-label="Edit">
 					<EditIcon />
 				</IconButton>
-				<IconButton aria-label="Delete">
+				<IconButton
+					aria-label="Delete"
+					onClick={() => {
+						removeTodo(id);
+					}}
+				>
 					<DeleteIcon />
 				</IconButton>
 			</ListItemSecondaryAction>

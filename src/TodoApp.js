@@ -36,6 +36,11 @@ export default function TodoApp() {
 		setTodos([ ...todos, { id: v4(), task: newTodoText, completed: false } ]);
 	};
 
+	const removeTodo = (todoid) => {
+		const updatedTodos = todos.filter((todo) => todo.id !== todoid);
+		setTodos(updatedTodos);
+	};
+
 	return (
 		<StyledPaper elevation={0}>
 			<AppBar color="primary" position="static" style={{ height: '64px' }}>
@@ -46,7 +51,11 @@ export default function TodoApp() {
 			<Grid container justify="center" style={{ marginTop: '1rem' }}>
 				<Grid item xs={11} md={8} lg={4}>
 					<TodoForm addTodo={addTodo} />
-					<TodoList todos={todos} completed={todos.completed} />
+					<TodoList
+						todos={todos}
+						completed={todos.completed}
+						removeTodo={removeTodo}
+					/>
 				</Grid>
 			</Grid>
 		</StyledPaper>
