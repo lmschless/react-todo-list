@@ -41,6 +41,14 @@ export default function TodoApp() {
 		setTodos(updatedTodos);
 	};
 
+	const toggleTodo = (todoid) => {
+		const updatedTodos = todos.map(
+			(todo) =>
+				todo.id === todoid ? { ...todo, completed: !todo.completed } : todo
+		);
+		setTodos(updatedTodos);
+	};
+
 	return (
 		<StyledPaper elevation={0}>
 			<AppBar color="primary" position="static" style={{ height: '64px' }}>
@@ -55,6 +63,7 @@ export default function TodoApp() {
 						todos={todos}
 						completed={todos.completed}
 						removeTodo={removeTodo}
+						toggleTodo={toggleTodo}
 					/>
 				</Grid>
 			</Grid>

@@ -12,10 +12,16 @@ const StyledListItemText = styled(ListItemText)`
 		text-decoration: ${(props) => (props.completed ? 'line-through' : 'none')};
 		`;
 
-export default function Todo({ task, completed, removeTodo, id }) {
+export default function Todo({ id, task, completed, removeTodo, toggleTodo }) {
 	return (
 		<ListItem>
-			<Checkbox tabIndex={-1} checked={completed} />
+			<Checkbox
+				tabIndex={-1}
+				checked={completed}
+				onClick={() => {
+					toggleTodo(id);
+				}}
+			/>
 			{/* have to add {completed ? 1 : 0} to convert bool into number for styled component logic above. */}
 			<StyledListItemText completed={completed ? 1 : 0}>
 				{task}
