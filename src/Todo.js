@@ -1,82 +1,58 @@
-import React, { Component } from 'react';
-import './Todo.css';
-export default class Todo extends Component {
-	constructor(props) {
-		super(props);
+import React from 'react';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Checkbox from '@material-ui/core/Checkbox';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import styled from 'styled-components';
+import useToggleState from './Hooks/useToggleState';
+import EditTodoForm from './EditTodoForm';
 
-		this.state = {
-			isEditing: false,
-			task: this.props.name
-		};
-	}
+const StyledListItemText = styled(ListItemText)`
+		text-decoration: ${(props) => (props.completed ? 'line-through' : 'none')};
+		`;
 
-	toggleForm = () => {
-		this.setState({ isEditing: !this.state.isEditing });
-	};
+// prevents todos from changing size and shifting when edit is clicked.
+const StyledListItem = styled(ListItem)`
+	height:64px;
+	`
 
-	handleUpdate = (evt) => {
-		evt.preventDefault();
-		// take a new todo and pass up to parent
-		this.props.update(this.props.id, this.state.task);
-		this.setState({
-			isEditing: false
-		});
-	};
+export default function Todo({ id, task, completed, removeTodo, toggleTodo, editTodo }) {
+	const [ isEditing, toggle ] = useToggleState(); // defaults to false
 
-	handleChange = (evt) => {
-		this.setState({
-			task: evt.target.value
-		});
-	};
-
-	render() {
-		let result;
-
-		if (this.state.isEditing) {
-			result = (
-				<div className="Todo">
-					<form className="Todo-edit-form" onSubmit={this.handleUpdate}>
-						<input
-							type="text"
-							value={this.state.task}
-							name="task"
-							onChange={this.handleChange}
-						/>
-						<button>Save</button>
-					</form>
-				</div>
-			);
-		} else {
-			result = (
-				<div className="Todo">
-					<li
-						className={
-							this.props.completed ? 'Todo-task completed' : 'Todo-task'
-						}
-						onClick={() => {
-							this.props.toggleTodo(this.props.id);
-						}}
-					>
-						{this.props.name}{' '}
-					</li>{' '}
-					<div className="Todo-buttons">
-						<button onClick={this.toggleForm}>
-							<i class="fas fa-pen" />
-						</button>{' '}
-						<button onClick={this.props.remove}>
-							{' '}
-							<i class="fas fa-trash" />
-						</button>
-					</div>
-				</div>
-			);
-		}
-		return result;
-		// <div>
-		// 	<li>
-		// 		{this.props.name} <button onClick={this.props.edit}>Edit</button>{' '}
-		// 		<button onClick={this.props.remove}>X</button>
-		// 	</li>{' '}
-		// </div>
-	}
+	return (
+		<StyledListItem>
+			{isEditing ?
+			<EditTodoForm editTodo={editTodo} id={id} toggleEditForm={toggle}/>: 
+			<>
+			<Checkbox
+				tabIndex={-1}
+				checked={completed}
+				onClick={() => {
+					toggleTodo(id);
+				}}
+			/>
+			 {/* have to add {completed ? 1 : 0} to convert bool into number for styled component logic above. */}
+			<StyledListItemText completed={completed ? 1 : 0}>
+				{task}
+			</StyledListItemText>
+			<ListItemSecondaryAction>
+				<IconButton aria-label="Edit" onClick={toggle}>
+					<EditIcon />
+				</IconButton>
+				<IconButton
+					aria-label="Delete"
+					onClick={() => {
+						removeTodo(id);
+					}}
+				>
+					<DeleteIcon />
+				</IconButton>
+			</ListItemSecondaryAction>
+			</>
+}
+		</StyledListItem>
+	);
 }
