@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+// hook can also be used to update a database using the key which would match a column name in a table.
 export default function useLocalStorageState(key, defaultVal) {
 	// make piece of state based off value in localstorage
 	// pass function into useState to check localStorage and set state to that

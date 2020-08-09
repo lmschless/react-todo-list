@@ -1,10 +1,10 @@
-import { useState } from 'react';
 import { v4 } from 'uuid';
-
+import useLocalStorageState from './useLocalStorageState';
 // package up state and all functions that manipulate that state so that they can be reused in any component without passing down props.
 
 export default (initialTodos) => {
-	const [ todos, setTodos ] = useState(initialTodos);
+	// use custom hook instead of useState. Need to pass in a key and initial value. "todos" = key, initialTodos = defaultVal
+	const [ todos, setTodos ] = useLocalStorageState('todos', initialTodos);
 
 	return {
 		todos,
