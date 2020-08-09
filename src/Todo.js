@@ -14,11 +14,16 @@ const StyledListItemText = styled(ListItemText)`
 		text-decoration: ${(props) => (props.completed ? 'line-through' : 'none')};
 		`;
 
+// prevents todos from changing size and shifting when edit is clicked.
+const StyledListItem = styled(ListItem)`
+	height:64px;
+	`
+
 export default function Todo({ id, task, completed, removeTodo, toggleTodo, editTodo }) {
 	const [ isEditing, toggle ] = useToggleState(); // defaults to false
 
 	return (
-		<ListItem>
+		<StyledListItem>
 			{isEditing ?
 			<EditTodoForm editTodo={editTodo} id={id} toggleEditForm={toggle}/>: 
 			<>
@@ -48,6 +53,6 @@ export default function Todo({ id, task, completed, removeTodo, toggleTodo, edit
 			</ListItemSecondaryAction>
 			</>
 }
-		</ListItem>
+		</StyledListItem>
 	);
 }

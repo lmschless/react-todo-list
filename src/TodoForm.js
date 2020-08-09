@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const StyledPaper = styled(Paper)`
 				margin: 1rem 0;
-				padding: 0 1 rem;
+				padding: 0 1rem;
 	`;
 export default function TodoForm({ addTodo }) {
 	// only import addTodo instead of all props

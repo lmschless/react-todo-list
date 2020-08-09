@@ -3,7 +3,7 @@
   "workbench.preferredDarkColorTheme": "Material Theme Darker High Contrast",
   "autoDarkMode.darkIconTheme": "Material Theme Darker High Contrast",
   "autoDarkMode.lightTheme": "Community Material Theme Lighter",
-  "workbench.colorTheme": "Community Material Theme Lighter",
+  "workbench.colorTheme": "Material Theme Darker High Contrast",
   "window.autoDetectColorScheme": true,
   "workbench.preferredLightColorTheme": "Community Material Theme Lighter",
   "debug.node.autoAttach": "on"
